@@ -22,13 +22,7 @@ router.get('/product-details',(req,res)=>{
   res.render('productdetails')
 })
 router.post("/submit",(req,res)=>{
-  MongoClient.connect("mongodb://localhost:27017",(err,client)=>{
-    if(err){
-      console.log(err);
-    }else{
-      client.db("hijas").collection("user").insertOne(req.body)
-    }
-  })
+
 
 })
 module.exports = router;

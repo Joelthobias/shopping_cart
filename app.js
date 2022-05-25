@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var db= require('./config/connection')
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/user');
 
@@ -18,6 +18,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+db.connect((err)=>{
+  if(err) console.log(err);
+  else console.log('Database conneted');
+})
 
 app.use('/', usersRouter);
 app.use('/min', adminRouter);
